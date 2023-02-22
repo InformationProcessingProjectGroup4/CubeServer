@@ -2,8 +2,13 @@
 .vscode
 
 # python environments
-.venv
-venv
+.venv/
+venv/
 
 # python cache
 **/__pycache__/**
+*.pyc
+
+# flask instance
+instance/
+dist/
