@@ -28,10 +28,11 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 
     ```sh
     cd cubeserver
-    pip install -r requirements.txt
+    pip install -e .
     ```
 
 5. Make an empty `config.py`, will add needed configurations later:
+
     ```sh
     touch config.py
     ```
