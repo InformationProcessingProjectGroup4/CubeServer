@@ -12,3 +12,6 @@ venv/
 # flask instance
 instance/
 dist/
+
+# config file
+config.py
