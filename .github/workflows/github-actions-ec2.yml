@@ -1,4 +1,4 @@
-name: Deplot-to-EC2
+name: Deploy-to-EC2
 
 on:
   push:
@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout the files
+      - name: Checkout files
         uses: actions/checkout@v3
 
-      - name: Deploy to EC2 
+      - name: Copy to EC2 and start tmux session 
         uses: easingthemes/ssh-deploy@main
         env:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
