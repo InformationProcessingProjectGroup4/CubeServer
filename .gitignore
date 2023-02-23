@@ -1,5 +1,6 @@
-# ide
+# ide & os
 .vscode
+.DS_Store
 
 # python virtual environments
 .venv/
