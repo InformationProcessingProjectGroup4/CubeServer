@@ -1,4 +1,5 @@
-from cubeserver import app
+from cubeserver import app, table
+import cubeserver.db as db
 
 from flask import request
 from datetime import datetime
@@ -11,12 +12,27 @@ def handle_root():
 # retrieve user data; return user data
 @app.route("/api/user", methods=["POST"])
 def handle_user():
-    return f"<pre>{request.method} /api/user @ {datetime.now()}</pre>"
+    data = request.get_json(force=True)
+    try:
+        auth = db.auth_user(table, data["username"], data["password"])
+    except Exception as e:
+        return { "status": "error", "type": type(e).__name__, "message": str(e)}, 400
+    else:
+        if auth:
+            return { "status": "success", "message": "password matched" }, 200
+        else:
+            return { "status": "failed", "message": "username or password incorrect" }, 200
 
 # save new user; returns user data
 @app.route("/api/user/add", methods=["POST"])
 def handle_user_add():
-    return f"<pre>{request.method} /api/user/add @ {datetime.now()}</pre>"
+    data = request.get_json(force=True)
+    try:
+        db.add_user(table, data["username"], data["password"])
+    except Exception as e:
+        return { "status": "error", "type": type(e).__name__, "message": str(e)}, 400
+    else:
+        return { "status": "success", "message": f"username ({data['username']}) added" }, 200
 
 # retrieve user progress; return progress data
 @app.route("/api/progress", methods=["POST"])
