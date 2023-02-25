@@ -16,7 +16,7 @@ def add_user(table, username, password):
     record = {
         "username": username,
         "password": hash,
-        "updated": datetime.now(),
+        "updated": str(datetime.now()),
         "score": [0, 0, 0, 0, 0],
         "level": [0, 0, 0, 0, 0],
         "progress": []
@@ -31,8 +31,6 @@ def add_user(table, username, password):
 def auth_user(table, username, password):
     try:
         response = table.get_item(Key={"username": username})
-    except boto3.ClientError as e:
-        raise Exception(f"ClientException: {e.response['Error']['Message']}")
     except Exception as e:
         raise Exception(f"DatabaseException: {str(e)}")
     else:
