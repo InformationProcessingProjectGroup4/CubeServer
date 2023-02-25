@@ -13,11 +13,12 @@ try:
 except OSError:
     pass
 
+# connect database
+table = db_connect("CubeServerData")
+
 # import views
 import cubeserver.views
 
-# connect database
-table = db_connect("CubeServerData")
 
 if __name__ == "__main__":
     app.run(host=app.config["HOST"], port=app.config["PORT"])
