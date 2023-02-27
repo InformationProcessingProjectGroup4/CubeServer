@@ -7,7 +7,7 @@ def create_user_table(database=None):
     table = database.create_table(
         TableName="CubeServerData",
         KeySchema=[{ "AttributeName": "username", "KeyType": "HASH"}],
-        AttributeDefinitions=[{ "AttributeName": "username", "KeyType": "S"}],
+        AttributeDefinitions=[{ "AttributeName": "username", "AttributeType": "S"}],
         ProvisionedThroughput={ "ReadCapacityUnits": 10, 
                                 "WriteCapacityUnits": 10 }
     )
