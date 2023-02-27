@@ -12,6 +12,7 @@ def db_connect(name):
 
 # user functions
 def add_user(table, username, password):
+    # build record
     hash = hash_password(password)
     record = {
         "username": username,
@@ -21,13 +22,25 @@ def add_user(table, username, password):
         "level": [0, 0, 0, 0, 0],
         "progress": []
     }
+    
+    # check if usernmae is duplicate
+    try:
+        response = table.get_item(Key={"username": username})
+    except Exception as e:
+        raise Exception(f"DatabaseException: {str(e)}")
+    else:
+        if not response["Item"]:
+            raise Exception(f"DuplicateUsernameException: username ({username}) is already in database")
+        
+    # add record
     try: 
         table.put_item(Item=record)
     except Exception as e:
         raise Exception(f"DatabaseException: {str(e)}")
     else:
         return True
-    
+
+
 def auth_user(table, username, password):
     try:
         response = table.get_item(Key={"username": username})
