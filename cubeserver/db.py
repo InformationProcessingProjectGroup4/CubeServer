@@ -29,8 +29,8 @@ def add_user(table, username, password):
     except Exception as e:
         raise Exception(f"DatabaseException: {str(e)}")
     else:
-        if not response["Item"]:
-            raise Exception(f"DuplicateUsernameException: username ({username}) is already in database")
+        if "Item" in response:
+            return False
         
     # add record
     try: 
