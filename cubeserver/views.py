@@ -46,7 +46,7 @@ def handle_user_add():
 @app.route("/api/progress", methods=["POST"])
 def handle_progress():
     data = request.get_json(force=True)
-    if data['username']:
+    if 'username' in data:
         try:
             score = db.get_user_score(table, data["username"])
             level = db.get_user_level(table, data["username"])
@@ -65,20 +65,20 @@ def handle_progress():
 @app.route("/api/progress/update", methods=["POST"])
 def handle_progress_update():
     data = request.get_json(force=True)
-    if data['username']:
-        if data["score"]:
+    if 'username' in data:
+        if 'score' in data:
             try:
                 score = validate_score(data["score"])
                 db.update_user_score(table, data["username"], score)
             except Exception as e:
                 return {"status": "error", "type": type(e).__name__, "message": str(e)}, 400
-        if data["level"]:
+        if 'level' in data:
             try:
                 level = validate_level(data["level"])
                 db.update_user_level(table, data["username"], level)
             except Exception as e:
                 return {"status": "error", "type": type(e).__name__, "message": str(e)}, 400
-        if data["progress"]:
+        if 'progress' in data:
             try:
                 db.update_user_progress(table, data["username"], data["progress"])
             except Exception as e:
