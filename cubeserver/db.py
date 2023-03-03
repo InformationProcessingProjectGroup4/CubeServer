@@ -87,7 +87,7 @@ def update_user_score(table, username, score):
 def update_user_level(table, username, level):
     try:
         _ = table.update_item(
-            Key={"username": username}, UpdateExpression="SET level = :l", ExpressionAttributeValues={":l": level})
+            Key={"username": username}, UpdateExpression="SET levelV = :s", ExpressionAttributeValues={":s": level}) # level is a reserved keyword so we use levelV
     except Exception as e:
         raise Exception(f"DatabaseException: {str(e)}, failed to update level")
     else:

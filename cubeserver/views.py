@@ -65,25 +65,29 @@ def handle_progress():
 @app.route("/api/progress/update", methods=["POST"])
 def handle_progress_update():
     data = request.get_json(force=True)
+    message ="Updated with "
     if 'username' in data:
         if 'score' in data:
             try:
                 score = validate_score(data["score"])
                 db.update_user_score(table, data["username"], score)
+                message += f"score={score}, "
             except Exception as e:
                 return {"status": "error", "type": type(e).__name__, "message": str(e)}, 400
         if 'level' in data:
             try:
                 level = validate_level(data["level"])
                 db.update_user_level(table, data["username"], level)
+                message += f"level={level}, "
             except Exception as e:
                 return {"status": "error", "type": type(e).__name__, "message": str(e)}, 400
         if 'progress' in data:
             try:
                 db.update_user_progress(table, data["username"], data["progress"])
+                message += f"progress={data['progress']}, "
             except Exception as e:
                 return {"status": "error", "type": type(e).__name__, "message": str(e)}, 400
-        return {"status": "success", "message": f"updated with score ={score}, level={level}, progress={data['progress']}"}, 200
+        return {"status": "success", "message": message}, 200
     else:
         return {"status": "error", "message": "username not provided"}, 400
 
