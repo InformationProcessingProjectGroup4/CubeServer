@@ -1,6 +1,5 @@
 from cubeserver import app, table
 import cubeserver.db as db
-
 from flask import request
 from datetime import datetime
 
@@ -49,9 +48,9 @@ def handle_progress_update():
 def handle_leaderboard():
     data = request.get_json(force=True)
     try:
-        db.get_leaderboard(table, data["level"], data["count"])
+        leaderboard = db.get_leaderboard(table, data["level"], data["count"])
     except Exception as e:
         return {"status": "error", "type": type(e).__name__, "message": str(e)}, 400
     else:
-        return {"status": "success", "data": [{"level": int, "players": [str], "scores": [int]}] }, 200
+        return {"status": "success", "level": data["level"], "leaderboard" : leaderboard }, 200
         
