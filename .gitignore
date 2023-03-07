@@ -18,3 +18,4 @@ dist/
 
 # config file
 config.py
+.DS_Store
