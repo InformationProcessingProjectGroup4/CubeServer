@@ -27,7 +27,7 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 4. Go into the repo and install all dependancies:
 
     ```sh
-    cd cubeserver
+    # You should now be in .../CubeServer
     pip install -e .
     ```
 
