@@ -20,12 +20,12 @@ def handle_user():
     try:
         auth = db.auth_user(table, data["username"], data["password"])
     except Exception as e:
-        return {"status": "error", "type": type(e).__name__, "message": str(e)}, 400
+        return { "status": "error", "type": type(e).__name__, "message": str(e)}, 400
     else:
         if auth:
-            return {"status": "success", "message": "password matched"}, 200
+            return { "status": "success", "message": "password matched" }, 200
         else:
-            return {"status": "failed", "message": "username or password incorrect"}, 200
+            return { "status": "failed", "message": "username or password incorrect" }, 200
 
 # save new user; returns user data
 
@@ -34,11 +34,14 @@ def handle_user():
 def handle_user_add():
     data = request.get_json(force=True)
     try:
-        db.add_user(table, data["username"], data["password"])
+        success = db.add_user(table, data["username"], data["password"])
     except Exception as e:
-        return {"status": "error", "type": type(e).__name__, "message": str(e)}, 400
+        return { "status": "error", "type": type(e).__name__, "message": str(e)}, 400
     else:
-        return {"status": "success", "message": f"username ({data['username']}) added"}, 200
+        if success:
+            return { "status": "success", "message": f"username ({data['username']}) added" }, 200
+        else:
+            return { "status": "failed", "message": f"username ({data['username']}) already in database" }, 200
 
 # retrieve user progress; return progress data
 
