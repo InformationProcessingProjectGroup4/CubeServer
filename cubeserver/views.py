@@ -94,9 +94,14 @@ def handle_progress_update():
     else:
         return {"status": "error", "message": "username not provided"}, 400
 
+
 # retrieve leaderboard data; returns leaderboard data
-
-
 @app.route("/api/leaderboard", methods=["POST"])
 def handle_leaderboard():
-    return f"<pre>{request.method} /api/leaderboard @ {datetime.now()}</pre>"
+    data = request.get_json(force=True)
+    try:
+        leaderboard = db.get_leaderboard(table, data["level"], data["count"])
+    except Exception as e:
+        return {"status": "error", "type": type(e).__name__, "message": str(e)}, 400
+    else:
+        return {"status": "success", "level": data["level"], "leaderboard" : leaderboard }, 200
