@@ -66,7 +66,7 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 * Method: `POST`
 * Request:
 
-    ```json
+    ```
     {
         "username": str, username of player,
         "password": str, hashed password
@@ -76,7 +76,7 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 * Response:
   * `200 OK`: correct login
 
-    ```json
+    ```
     {
         "status": str, "success",
         "message": str, success message
@@ -85,7 +85,7 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 
   * `200 OK`: wrong login
 
-    ```json
+    ```
     {
         "status": str, "failed",
         "message": str, fail message
@@ -94,7 +94,7 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 
   * `400 Bad Request`
 
-    ```json
+    ```
     {
         "status": str, "error",
         "type": str, error type,
@@ -107,7 +107,7 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 * Method: `POST`
 * Request:
 
-  ```json
+  ```
   {
       "username": str, username of player,
       "password": str, hashed password
@@ -117,7 +117,7 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 * Response:
   * `200 OK`
 
-    ```json
+    ```
     {
         "status": str, "success",
         "message": str, success message
@@ -126,7 +126,7 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 
   * `400 Bad Request`
 
-    ```json
+    ```
     {
         "status": str, "error",
         "type": str, error type,
@@ -139,7 +139,7 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 * Method: `POST`
 * Request:
 
-  ```json
+  ```
   {
       "username": str, username of player
   }
@@ -148,7 +148,7 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 * Response:
   * `200 OK`
 
-    ```json
+    ```
     {
         "status": str, "success",
         "data": {
@@ -164,7 +164,7 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 
   * `400 Bad Request`
 
-    ```json
+    ```
     {
         "status": str, "error",
         "type": str, error type,
@@ -177,7 +177,7 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 * Method: `POST`
 * Request:
 
-  ```json
+  ```
   {
       "username": str, username of player requested,
       "score": [int], [int], high score for each level
@@ -189,7 +189,7 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 * Response:
   * `200 OK`
   
-    ```json
+    ```
     {
         "status": str, "success",
         "message": str, success message
@@ -198,7 +198,7 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 
   * `400 Bad Request`
   
-    ```json
+    ```
     {
         "status": str, "error",
         "type": str, error type,
@@ -211,7 +211,7 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 * Method: `POST`
 * Request:
 
-  ```json
+  ```
   [{ 
       "level": int, level number,
       "count": int, number of players to return
@@ -221,7 +221,7 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 * Response:
   * `200 OK`
 
-    ```json
+    ```
     {
         "status": str, "success",
         "data": [{
@@ -234,7 +234,7 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 
   * `400 Bad Request`
   
-    ```json
+    ```
     {
         "status": str, "error",
         "type": str, error type,
