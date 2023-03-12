@@ -12,7 +12,7 @@ def db_connect(name):
     table = database.Table(name)
     return table
 
-
+x
 # --------------------------------- /api/user -------------------------------- #
 
 def add_user(table, username, password):
@@ -51,7 +51,7 @@ def auth_user(table, username, password):
     except Exception as e:
         raise Exception(f"DatabaseException: {str(e)}")
     else:
-        if response["Item"]:
+        if "Item" in response:
             user = response["Item"]
             return check_password(password, user["password"])
         else:
@@ -68,7 +68,7 @@ def get_user_progress(table, username):
     except Exception as e:
         raise Exception(f"DatabaseException: {str(e)}, failed to get progress")
     else:
-        if response["Item"]:
+        if "Item" in response:
             user = response["Item"]
             if user["score"]:
                 return user["progress"]
@@ -84,7 +84,7 @@ def get_user_score(table, username):
     except Exception as e:
         raise Exception(f"DatabaseException: {str(e)}, failed to get score")
     else:
-        if response["Item"]:
+        if "Item" in response:
             user = response["Item"]
             if user["score"]:
                 return user["score"]
@@ -99,7 +99,7 @@ def get_user_level(table, username):
     except Exception as e:
         raise Exception(f"DatabaseException: {str(e)}, failed to get level")
     else:
-        if response["Item"]:
+        if "Item" in response:
             user = response["Item"]
             if user["level"]:
                 return user["level"]
