@@ -91,10 +91,14 @@ def handle_progress_update():
 # retrieve leaderboard data; returns leaderboard data
 @app.route("/api/leaderboard", methods=["POST"])
 def handle_leaderboard():
-    data = request.get_json(force=True)
+    req_data = request.get_json(force=True) #array of dictionaries
     try:
-        leaderboard = db.get_leaderboard(table, data["level"], data["count"])
+        res_data = []
+        for data in req_data
+            leaderboard = db.get_leaderboard(table, data["level"], data["count"])
+            res_data.append(leaderboard)
     except Exception as e:
         return {"status": "error", "type": type(e).__name__, "message": str(e)}, 400
     else:
-        return {"status": "success", "level": data["level"], "leaderboard" : leaderboard }, 200
+        return {"status": "success", "level": data["level"], "leaderboard" : res_data }, 200
+        
