@@ -12,7 +12,6 @@ def db_connect(name):
     table = database.Table(name)
     return table
 
-x
 # --------------------------------- /api/user -------------------------------- #
 
 def add_user(table, username, password):
