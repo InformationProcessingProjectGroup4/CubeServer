@@ -1,13 +1,13 @@
-name: Deploy-to-EC2
+name: Deploy to Debug EC2 on 'dev' Push
 
 on:
   push:
     branches:
-      - main
+      - dev
 
 jobs:
   deploy:
-    name: Deploy to EC2 on main branch push
+    name: Deploy to EC2 on dev branch push
     runs-on: ubuntu-latest
 
     steps:
