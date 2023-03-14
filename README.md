@@ -1,53 +1,13 @@
 # CubeServer
 
-Repository for Cube game data server. See documentation [here](https://hackmd.io/@samuelpswang/Hke6Z5zCj).
+Status: `🟢 Complete`
 
-## Quickstart
+Repository for Cube game data server. See documentation [here](https://hackmd.io/@samuelpswang/Hke6Z5zCj), and hosted app [here](http://ec2-35-177-122-51.eu-west-2.compute.amazonaws.com:5000/). Github Action is configured to auto-deploy on push to `main` branch.
 
-1. Clone this repository:
-
-    ```sh
-    git clone https://github.com/InformationProcessingProjectGroup4/CubeServer
-    ```
-
-2. Install latest version of Python; or check if you have `3.11.2` by `python --version`. If not, run the following:
-
-    ```sh
-    brew install python@3.11
-    ```
-
-3. Create the virtual environment and activate it:
-
-    ```sh
-    pip install virtualenv
-    virtualenv --python=3.11.2 .venv
-    source .venv/bin/activate
-    ```
-
-4. Go into the repo and install all dependancies:
-
-    ```sh
-    # You should now be in .../CubeServer
-    pip install -e .
-    ```
-
-5. Make an empty `config.py`, will add needed configurations later:
-
-    ```sh
-    touch config.py
-    ```
-
-6. Start the app:
-
-    ```sh
-    flask --app cubeserver run
-    ```
-
-7. To finish and exit the virtual environment:
-
-    ```sh
-    deactivate
-    ```
+| Key        | Value                                               |
+| :--------- | :-------------------------------------------------- |
+| Public DNS | `ec2-35-177-122-51.eu-west-2.compute.amazonaws.com` |
+| Port       | `5000`                                              |
 
 ## API Documentation
 
@@ -242,6 +202,47 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
     }
     ```
 
+## Development Quickstart
+
+1. Clone this repository:
+
+    ```sh
+    git clone https://github.com/InformationProcessingProjectGroup4/CubeServer
+    ```
+
+2. Install latest version of Python; or check if you have `3.11.2` by `python --version`. If not, run the following:
+
+    ```sh
+    brew install python@3.11
+    ```
+
+3. Create the virtual environment and activate it:
+
+    ```sh
+    pip install virtualenv
+    virtualenv --python=3.11.2 .venv
+    source .venv/bin/activate
+    ```
+
+4. Go into the repo and install all dependancies:
+
+    ```sh
+    # You should now be in .../CubeServer
+    pip install -r requirements.txt
+    ```
+
+5. Start the app:
+
+    ```sh
+    flask --app cubeserver run
+    ```
+
+6. To finish and exit the virtual environment:
+
+    ```sh
+    deactivate
+    ```
+
 ## File Structure
 
 ```txt
@@ -266,7 +267,7 @@ CubeServer/
 ## Branches
 
 1. `main`: production branch.
-2. `dev`: main developement branch, merge feature branches here.
-3. `feature/user`: development branch for `/user` endpoint.
-4. `feature/progress`: development branch for `/progress` endpoint.
-5. `feature/leaderboard`: development branch for `/leaderboard` endpoint.
+2. `dev`: main developement branch, merge feature branches here (merged).
+3. `feature/user`: development branch for `/user` endpoint (merged).
+4. `feature/progress`: development branch for `/progress` endpoint (merged).
+5. `feature/leaderboard`: development branch for `/leaderboard` endpoint (merged).

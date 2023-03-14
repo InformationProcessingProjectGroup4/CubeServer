@@ -7,8 +7,12 @@ from cubeserver.util import validate_score, validate_level
 
 
 # main api route; return method and timestamp
-@app.route("/api", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 def handle_root():
+    return f"<p>Welcome to <pre>CubeServer-Test-3</pre></p>"
+
+@app.route("/api", methods=["GET", "POST"])
+def handle_api():
     return f"<pre>{request.method} /api @ {datetime.now()}</pre>"
 
 
