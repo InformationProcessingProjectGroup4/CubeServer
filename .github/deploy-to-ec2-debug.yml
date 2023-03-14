@@ -1,0 +1,25 @@
+name: Deploy to Debug EC2 on 'dev' Push
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  deploy:
+    name: Deploy to EC2 on dev branch push
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout files
+        uses: actions/checkout@v3
+
+      - name: Copy to EC2 and start tmux session 
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY_DEBUG }}
+          REMOTE_HOST: ${{ secrets.HOST_DNS_DEBUG }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
+          TARGET: ${{ secrets.TARGET_DIR }}
+          SOURCE: ./
+          SCRIPT_AFTER: cd ~/CubeServer && source deploy_debug.sh

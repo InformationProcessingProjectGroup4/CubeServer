@@ -27,7 +27,7 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 4. Go into the repo and install all dependancies:
 
     ```sh
-    cd cubeserver
+    # You should now be in .../CubeServer
     pip install -e .
     ```
 
@@ -47,6 +47,199 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 
     ```sh
     deactivate
+    ```
+
+## API Documentation
+
+### `/api`
+
+* Method: `GET, POST`
+* Request: `N/A`
+* Response:
+
+    ```txt
+    <pre>{Method} /api @ {Timestamp}</pre>
+    ```
+
+### `/api/user`
+
+* Method: `POST`
+* Request:
+
+    ```
+    {
+        "username": str, username of player,
+        "password": str, hashed password
+    }
+    ```
+
+* Response:
+  * `200 OK`: correct login
+
+    ```
+    {
+        "status": str, "success",
+        "message": str, success message
+    }
+    ```
+
+  * `200 OK`: wrong login
+
+    ```
+    {
+        "status": str, "failed",
+        "message": str, fail message
+    }
+    ```
+
+  * `400 Bad Request`
+
+    ```
+    {
+        "status": str, "error",
+        "type": str, error type,
+        "message": str, error message
+    }
+    ```
+
+### `/api/user/add`
+
+* Method: `POST`
+* Request:
+
+  ```
+  {
+      "username": str, username of player,
+      "password": str, hashed password
+  }
+  ```
+
+* Response:
+  * `200 OK`
+
+    ```
+    {
+        "status": str, "success",
+        "message": str, success message
+    }
+    ```
+
+  * `400 Bad Request`
+
+    ```
+    {
+        "status": str, "error",
+        "type": str, error type,
+        "message": str, error message
+    }
+    ```
+
+### `/api/progress`
+
+* Method: `POST`
+* Request:
+
+  ```
+  {
+      "username": str, username of player
+  }
+  ```
+
+* Response:
+  * `200 OK`
+
+    ```
+    {
+        "status": str, "success",
+        "data": {
+            "score": [str], score array
+            "level": [str], level array
+            "progress": json, {
+                    "timestamp": datetime, timestamp of save,
+                    "data": json, game data that needs to be saved
+            }
+          }
+    }
+    ```
+
+  * `400 Bad Request`
+
+    ```
+    {
+        "status": str, "error",
+        "type": str, error type,
+        "message": str, error message
+    }
+    ```
+
+### `/api/progress/update`
+
+* Method: `POST`
+* Request:
+
+  ```
+  {
+      "username": str, username of player requested,
+      "score": [int], [int], high score for each level
+      "level": [int], level status, (0: new, 1: in progress, 2: completed)
+      "progress": json, game data that needs to be saved
+  }
+  ```
+
+* Response:
+  * `200 OK`
+  
+    ```
+    {
+        "status": str, "success",
+        "message": str, success message
+    }
+    ```
+
+  * `400 Bad Request`
+  
+    ```
+    {
+        "status": str, "error",
+        "type": str, error type,
+        "message": str, error message
+    }
+    ```
+
+### `/api/leaderboard`
+
+* Method: `POST`
+* Request:
+
+  ```
+  [{ 
+      "level": int, level number,
+      "count": int, number of players to return
+  }]
+  ```
+
+* Response:
+  * `200 OK`
+
+    ```
+    {
+        "status": str, "success",
+        "data": [{
+            "level": int, level number,
+            "players": [str], username of players from highscore to low,
+            "scores": [int], coresponding score of players from highscore to low
+        }]
+    }
+    ```
+
+  * `400 Bad Request`
+  
+    ```
+    {
+        "status": str, "error",
+        "type": str, error type,
+        "message": str, error message
+    }
     ```
 
 ## File Structure
