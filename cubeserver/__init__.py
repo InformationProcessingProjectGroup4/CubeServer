@@ -5,7 +5,6 @@ from cubeserver.db import db_connect
 
 # create app
 app = Flask(__name__, instance_relative_config=True)
-app.config.from_pyfile('config.py')
 
 # create instance folder
 try:
@@ -21,4 +20,4 @@ import cubeserver.views
 
 
 if __name__ == "__main__":
-    app.run(host=app.config["HOST"], port=app.config["PORT"])
+    app.run(debug=True, host="0.0.0.0", port=5000)
