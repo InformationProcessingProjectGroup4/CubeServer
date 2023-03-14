@@ -47,13 +47,19 @@ def handle_progress():
     data = request.get_json(force=True)
     if 'username' in data:
         try:
-            score = db.get_user_score(table, data["username"])
-            level = db.get_user_level(table, data["username"])
-            progress = db.get_user_progress(table, data["username"])
+            # score = db.get_user_score(table, data["username"])
+            # level = db.get_user_level(table, data["username"])
+            # progress = db.get_user_progress(table, data["username"])
+            serverResponse = db.get_user_data(table, data["username"])
+            score = serverResponse["score"]
+            level = serverResponse["level"]
+            progress = serverResponse["progress"]
+            
+            
         except Exception as e:
             return {"status": "error", "type": type(e).__name__, "message": str(e)}, 400
         else:
-            return {"status": "success", "score": score, "level": level, "progress": progress}, 200
+            return {"status": "success", "score": score, "level": level, "progress": progress }, 200
     else:
         return {"status": "error", "message": "username not provided"}, 400
 
@@ -94,7 +100,7 @@ def handle_leaderboard():
     req_data = request.get_json(force=True) #array of dictionaries
     try:
         res_data = []
-        for data in req_data
+        for data in req_data:
             leaderboard = db.get_leaderboard(table, data["level"], data["count"])
             res_data.append(leaderboard)
     except Exception as e:

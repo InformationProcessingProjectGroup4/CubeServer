@@ -59,54 +59,66 @@ def auth_user(table, username, password):
 
 # ------------------------------- /api/progress ------------------------------ #
 
-# PLEASE NOTE: IF WE ARE HANDLING JSONs AS-IS, WE MIGHT NOT BE ABLE TO USE A LIST [] FOR THE PROGRESS DATA
+# PROGRESS FEATURE IS NOT YET CONFIRMED
 
-def get_user_progress(table, username):
+def get_user_data(table, username):
     try:
         response = table.get_item(Key={"username": username})
     except Exception as e:
-        raise Exception(f"DatabaseException: {str(e)}, failed to get progress")
+        raise Exception(f"DatabaseException: {str(e)}, failed to get data")
     else:
         if "Item" in response:
-            user = response["Item"]
-            if user["score"]:
-                return user["progress"]
-            else:
-                return []
-        else:
-            return [] # default behaviour: empty list (no paused current state)
+            return(response["Item"])
+        else:  # default behaviour: 0 score
+            raise Exception(f"DatabaseException: {str(e)}, failed to get data")
 
 
-def get_user_score(table, username):
-    try:
-        response = table.get_item(Key={"username": username})
-    except Exception as e:
-        raise Exception(f"DatabaseException: {str(e)}, failed to get score")
-    else:
-        if "Item" in response:
-            user = response["Item"]
-            if user["score"]:
-                return user["score"]
-            else:
-                return [0, 0, 0, 0, 0]
-        else: # default behaviour: 0 score
-            return [0, 0, 0, 0, 0]
+# def get_user_progress(table, username):
+#     try:
+#         response = table.get_item(Key={"username": username})
+#     except Exception as e:
+#         raise Exception(f"DatabaseException: {str(e)}, failed to get progress")
+#     else:
+#         if "Item" in response:
+#             user = response["Item"]
+#             if user["score"]:
+#                 return user["progress"]
+#             else:
+#                 return []
+#         else:
+#             return [] # default behaviour: empty list (no paused current state)
 
-def get_user_level(table, username):
-    try:
-        response = table.get_item(Key={"username": username})
-    except Exception as e:
-        raise Exception(f"DatabaseException: {str(e)}, failed to get level")
-    else:
-        if "Item" in response:
-            user = response["Item"]
-            if user["level"]:
-                return user["level"]
-            else:
-                return [0,0,0,0,0]
-        else:
-            # default behaviour: no levels completed
-            return [0, 0, 0, 0, 0]
+
+# def get_user_score(table, username):
+#     try:
+#         response = table.get_item(Key={"username": username})
+#     except Exception as e:
+#         raise Exception(f"DatabaseException: {str(e)}, failed to get score")
+#     else:
+#         if "Item" in response:
+#             user = response["Item"]
+#             if user["score"]:
+#                 return user["score"]
+#             else:
+#                 return [0, 0, 0, 0, 0]
+#         else: # default behaviour: 0 score
+#             return [0, 0, 0, 0, 0]
+
+# def get_user_level(table, username):
+#     try:
+#         response = table.get_item(Key={"username": username})
+#     except Exception as e:
+#         raise Exception(f"DatabaseException: {str(e)}, failed to get level")
+#     else:
+#         if "Item" in response:
+#             user = response["Item"]
+#             if user["level"]:
+#                 return user["level"]
+#             else:
+#                 return [0,0,0,0,0]
+#         else:
+#             # default behaviour: no levels completed
+#             return [0, 0, 0, 0, 0]
 
 def update_user_progress(table, username, progress_dict):
     progress= json.dumps(progress_dict)
@@ -126,10 +138,11 @@ def update_user_score(table, username, score):
     else:
         return
 
+
 def update_user_level(table, username, level):
     try:
         _ = table.update_item(
-            Key={"username": username}, UpdateExpression="SET levelV = :s", ExpressionAttributeValues={":s": level}) # level is a reserved keyword so we use levelV
+            Key={"username": username}, UpdateExpression="SET #lv = :l", ExpressionAttributeValues={":l": level}, ExpressionAttributeNames={"#lv": "level"})  # level is a reserved keyword so we use the ExpressionAttributeNames placeholder function
     except Exception as e:
         raise Exception(f"DatabaseException: {str(e)}, failed to update level")
     else:
@@ -165,3 +178,5 @@ def get_leaderboard(table, level, count):
         leaderboard.sort(key=lambda x : get_score(x), reverse=True)
         leaderboard = leaderboard[:count]
         return leaderboard
+
+
