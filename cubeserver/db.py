@@ -177,6 +177,11 @@ def get_leaderboard(table, level, count):
             leaderboard.append({"username": data[i]['username'], "score": data[i]['score'][level] })
         leaderboard.sort(key=lambda x : get_score(x), reverse=True)
         leaderboard = leaderboard[:count]
-        return leaderboard
-
-
+        
+        # leaderboard: [{ "username": str, "score": int }]
+        result = { "username": [], "score": [], "level": level }
+        for entry in leaderboard:
+            result["username"].append(entry["username"])
+            result["score"].append(entry["score"])
+        
+        return result

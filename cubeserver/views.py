@@ -104,7 +104,6 @@ def handle_leaderboard():
             leaderboard = db.get_leaderboard(table, data["level"], data["count"])
             res_data.append(leaderboard)
     except Exception as e:
-        return {"status": "error", "type": type(e).__name__, "message": str(e)}, 400
+        return { "status": "error", "type": type(e).__name__, "message": str(e) }, 400
     else:
-        return {"status": "success", "level": data["level"], "leaderboard" : res_data }, 200
-        
+        return { "status": "success", "data": res_data }, 200
