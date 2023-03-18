@@ -7,17 +7,17 @@ from cubeserver.util import validate_score, validate_level
 
 
 # main api route; return method and timestamp
-@app.route("/", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST", "PUT"])
 def handle_root():
     return f"<p>Welcome to <pre>CubeServer-Test-3</pre></p>"
 
-@app.route("/api", methods=["GET", "POST"])
+@app.route("/api", methods=["GET", "POST", "PUT"])
 def handle_api():
     return f"<pre>{request.method} /api @ {datetime.now()}</pre>"
 
 
 # retrieve user data; return user data
-@app.route("/api/user", methods=["POST"])
+@app.route("/api/user", methods=["GET", "POST", "PUT"])
 def handle_user():
     data = request.get_json(force=True)
     try:
@@ -31,7 +31,7 @@ def handle_user():
             return { "status": "failed", "message": "username or password incorrect" }, 200
 
 # save new user; returns user data
-@app.route("/api/user/add", methods=["POST"])
+@app.route("/api/user/add", methods=["GET", "POST", "PUT"])
 def handle_user_add():
     data = request.get_json(force=True)
     try:
@@ -46,7 +46,7 @@ def handle_user_add():
 
 
 # retrieve user progress; return progress data
-@app.route("/api/progress", methods=["POST"])
+@app.route("/api/progress", methods=["GET", "POST", "PUT"])
 def handle_progress():
     data = request.get_json(force=True)
     if 'username' in data:
@@ -68,7 +68,7 @@ def handle_progress():
         return {"status": "error", "message": "username not provided"}, 400
 
 # save user progress; returns new progress data
-@app.route("/api/progress/update", methods=["POST"])
+@app.route("/api/progress/update", methods=["GET", "POST", "PUT"])
 def handle_progress_update():
     data = request.get_json(force=True)
     message ="Updated with "
@@ -99,7 +99,7 @@ def handle_progress_update():
 
 
 # retrieve leaderboard data; returns leaderboard data
-@app.route("/api/leaderboard", methods=["POST"])
+@app.route("/api/leaderboard", methods=["GET", "POST", "PUT"])
 def handle_leaderboard():
     req_data = request.get_json(force=True) #array of dictionaries
     try:
