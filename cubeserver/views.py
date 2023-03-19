@@ -51,15 +51,14 @@ def handle_progress():
     data = request.get_json(force=True)
     if 'username' in data:
         try:
-            # score = db.get_user_score(table, data["username"])
-            # level = db.get_user_level(table, data["username"])
-            # progress = db.get_user_progress(table, data["username"])
             serverResponse = db.get_user_data(table, data["username"])
             score = serverResponse["score"]
+            for i in range(len(score)):
+                score[i] = int(score[i])
             level = serverResponse["level"]
+            for i in range(len(level)):
+                level[i] = int(level[i])
             progress = serverResponse["progress"]
-            
-            
         except Exception as e:
             return {"status": "error", "type": type(e).__name__, "message": str(e)}, 400
         else:

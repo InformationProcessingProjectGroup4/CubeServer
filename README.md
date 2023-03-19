@@ -112,8 +112,8 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
     {
         "status": str, "success",
         "data": {
-            "score": [str], score array
-            "level": [str], level array
+            "score": [int], score array
+            "level": [int], level array
             "progress": json, {
                     "timestamp": datetime, timestamp of save,
                     "data": json, game data that needs to be saved
