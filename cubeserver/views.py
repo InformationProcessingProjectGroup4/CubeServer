@@ -100,7 +100,12 @@ def handle_progress_update():
 # retrieve leaderboard data; returns leaderboard data
 @app.route("/api/leaderboard", methods=["GET", "POST", "PUT"])
 def handle_leaderboard():
-    req_data = request.get_json(force=True) #array of dictionaries
+    req_data = request.get_json(force=True) # e.g. { count: 3 }
+    req_data = [
+        { "lavel": 0, "count": req_data["count"] }, 
+        { "lavel": 1, "count": req_data["count"] }, 
+        { "lavel": 2, "count": req_data["count"] }
+    ]
     try:
         res_data = []
         for data in req_data:
