@@ -13,7 +13,7 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 
 ### `/api`
 
-* Method: `GET, POST`
+* Method: `GET`, `POST`, `PUT`
 * Request: `N/A`
 * Response:
 
@@ -23,7 +23,7 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 
 ### `/api/user`
 
-* Method: `POST`
+* Method: `GET`, `POST`, `PUT`
 * Request:
 
     ```javascript
@@ -64,7 +64,7 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 
 ### `/api/user/add`
 
-* Method: `POST`
+* Method: `GET`, `POST`, `PUT`
 * Request:
 
   ```javascript
@@ -96,7 +96,7 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 
 ### `/api/progress`
 
-* Method: `POST`
+* Method: `GET`, `POST`, `PUT`
 * Request:
 
   ```javascript
@@ -134,7 +134,7 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 
 ### `/api/progress/update`
 
-* Method: `POST`
+* Method: `GET`, `POST`, `PUT`
 * Request:
 
   ```javascript
@@ -168,7 +168,7 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 
 ### `/api/leaderboard`
 
-* Method: `POST`
+* Method: `GET`, `POST`, `PUT`
 * Request:
 
   ```javascript
