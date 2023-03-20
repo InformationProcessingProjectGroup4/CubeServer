@@ -172,10 +172,9 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 * Request:
 
   ```javascript
-  [{ 
-      "level": int, // level number
+  { 
       "count": int // number of players to return
-  }]
+  }
   ```
 
 * Response:
