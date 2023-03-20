@@ -106,12 +106,24 @@ def handle_leaderboard():
         { "level": 1, "count": req_data["count"] }, 
         { "level": 2, "count": req_data["count"] }
     ]
+    
     try:
         res_data = []
         for data in req_data:
             leaderboard = db.get_leaderboard(table, data["level"], data["count"])
             res_data.append(leaderboard)
+        actual_res_data = { 
+            "level0": res_data[0]["level"],
+            "score0": res_data[0]["score"],
+            "username0": res_data[0]["username"],
+            "level1": res_data[1]["level"],
+            "score1": res_data[1]["score"],
+            "username1": res_data[1]["username"],
+            "level2": res_data[2]["level"],
+            "score2": res_data[2]["score"],
+            "username2": res_data[2]["username"]
+        }
     except Exception as e:
         return { "status": "error", "type": type(e).__name__, "message": str(e) }, 400
     else:
-        return { "status": "success", "data": res_data }, 200
+        return { "status": "success", "data": actual_res_data }, 200

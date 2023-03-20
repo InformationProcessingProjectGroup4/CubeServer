@@ -183,11 +183,17 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
     ```javascript
     {
         "status": str, // "success"
-        "data": [{
-            "level": int, // level number
-            "players": [str], // username of players from highscore to low
-            "scores": [int] // coresponding score of players from highscore to low
-        }]
+        "data": {
+            "level0": int, // level number
+            "scores0": [str] // coresponding score of players from highscore to low
+            "username0": [str], // username of players from highscore to low
+            "level1": int, 
+            "scores1": [str],
+            "username1": [str],
+            "level2": int,
+            "scores2": [str]
+            "username2": [str]
+        }
     }
     ```
 
