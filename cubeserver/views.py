@@ -84,7 +84,7 @@ def handle_progress_update():
                         newScore[i] = int(oldScore[i])
                     
                 db.update_user_score(table, data["username"], newScore)
-                message += f"score={score}, "
+                message += f"score={newScore}, "
             except Exception as e:
                 return {"status": "error", "type": type(e).__name__, "message": str(e)}, 400
         if 'level' in data:
