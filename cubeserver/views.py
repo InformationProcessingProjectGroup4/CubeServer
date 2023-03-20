@@ -75,7 +75,15 @@ def handle_progress_update():
         if 'score' in data:
             try:
                 score = validate_score(data["score"])
-                db.update_user_score(table, data["username"], score)
+                oldScore = db.get_user_data(table, data["username"])["score"]
+                newScore = [0 for h in range(len(score))]
+                for i in range(len(score)):
+                    if score[i]>int(oldScore[i]):
+                        newScore[i] = score[i]
+                    else:
+                        newScore[i] = int(oldScore[i])
+                    
+                db.update_user_score(table, data["username"], newScore)
                 message += f"score={score}, "
             except Exception as e:
                 return {"status": "error", "type": type(e).__name__, "message": str(e)}, 400
