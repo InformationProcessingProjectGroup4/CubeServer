@@ -114,13 +114,13 @@ def handle_leaderboard():
             res_data.append(leaderboard)
         actual_res_data = { 
             "level0": res_data[0]["level"],
-            "score0": res_data[0]["score"],
+            "score0": [int(s) for s in res_data[0]["score"]],
             "username0": res_data[0]["username"],
             "level1": res_data[1]["level"],
-            "score1": res_data[1]["score"],
+            "score1": [int(s) for s in res_data[1]["score"]],
             "username1": res_data[1]["username"],
             "level2": res_data[2]["level"],
-            "score2": res_data[2]["score"],
+            "score2": [int(s) for s in res_data[2]["score"]],
             "username2": res_data[2]["username"]
         }
     except Exception as e:
