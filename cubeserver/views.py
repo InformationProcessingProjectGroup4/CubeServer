@@ -102,9 +102,9 @@ def handle_progress_update():
 def handle_leaderboard():
     req_data = request.get_json(force=True) # e.g. { count: 3 }
     req_data = [
-        { "lavel": 0, "count": req_data["count"] }, 
-        { "lavel": 1, "count": req_data["count"] }, 
-        { "lavel": 2, "count": req_data["count"] }
+        { "level": 0, "count": req_data["count"] }, 
+        { "level": 1, "count": req_data["count"] }, 
+        { "level": 2, "count": req_data["count"] }
     ]
     try:
         res_data = []
