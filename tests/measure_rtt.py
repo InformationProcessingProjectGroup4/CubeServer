@@ -35,9 +35,9 @@ for i in range(len(TEST_API)):
             print(f"{response.status_code}: {json.loads(response.content.decode('utf-8'))}")
     end = time.time()
     rtt = ((end-start)/COUNT)*1000
-    print(f"----- TEST #{i+1} -----")
+    print(f"===== TEST #{i+1} =====")
     print(f"api: {TEST_API[i]}")
     print(f"test_data: {TEST_DATA[i]}")
     print(f"request_count: {COUNT} times")
     print(f"rtt: {rtt} ms")
-    print(f"-----------------------")
+    print(f"==================")
