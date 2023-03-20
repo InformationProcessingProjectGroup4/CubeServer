@@ -17,7 +17,7 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 * Request: `N/A`
 * Response:
 
-    ```txt
+    ```html
     <pre>{Method} /api @ {Timestamp}</pre>
     ```
 
@@ -26,39 +26,39 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 * Method: `POST`
 * Request:
 
-    ```
+    ```javascript
     {
-        "username": str, username of player,
-        "password": str, hashed password
+        "username": str, // username of player
+        "password": str // hashed password
     }
     ```
 
 * Response:
   * `200 OK`: correct login
 
-    ```
+    ```javascript
     {
-        "status": str, "success",
-        "message": str, success message
+        "status": str, // "success"
+        "message": str // success message
     }
     ```
 
   * `200 OK`: wrong login
 
-    ```
+    ```javascript
     {
-        "status": str, "failed",
-        "message": str, fail message
+        "status": str, // "failed"
+        "message": str // fail message
     }
     ```
 
   * `400 Bad Request`
 
-    ```
+    ```javascript
     {
-        "status": str, "error",
-        "type": str, error type,
-        "message": str, error message
+        "status": str, // "error"
+        "type": str, // error type
+        "message": str // error message
     }
     ```
 
@@ -67,30 +67,30 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 * Method: `POST`
 * Request:
 
-  ```
+  ```javascript
   {
-      "username": str, username of player,
-      "password": str, hashed password
+      "username": str, // username of player
+      "password": str // hashed password
   }
   ```
 
 * Response:
   * `200 OK`
 
-    ```
+    ```javascript
     {
-        "status": str, "success",
-        "message": str, success message
+        "status": str, // "success"
+        "message": str // success message
     }
     ```
 
   * `400 Bad Request`
 
-    ```
+    ```javascript
     {
-        "status": str, "error",
-        "type": str, error type,
-        "message": str, error message
+        "status": str, // "error"
+        "type": str, // error type
+        "message": str // error message
     }
     ```
 
@@ -99,24 +99,24 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 * Method: `POST`
 * Request:
 
-  ```
+  ```javascript
   {
-      "username": str, username of player
+      "username": str // username of player
   }
   ```
 
 * Response:
   * `200 OK`
 
-    ```
+    ```javascript
     {
-        "status": str, "success",
+        "status": str, // "success"
         "data": {
-            "score": [int], score array
-            "level": [int], level array
+            "score": [int], // score array
+            "level": [int], // level array
             "progress": json, {
-                    "timestamp": datetime, timestamp of save,
-                    "data": json, game data that needs to be saved
+                    "timestamp": datetime, // timestamp of save
+                    "data": json // game data that needs to be saved
             }
           }
     }
@@ -124,11 +124,11 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 
   * `400 Bad Request`
 
-    ```
+    ```javascript
     {
-        "status": str, "error",
-        "type": str, error type,
-        "message": str, error message
+        "status": str, // "error"
+        "type": str, // error type
+        "message": str // error message
     }
     ```
 
@@ -137,32 +137,32 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 * Method: `POST`
 * Request:
 
-  ```
+  ```javascript
   {
-      "username": str, username of player requested,
-      "score": [int], [int], high score for each level
-      "level": [int], level status, (0: new, 1: in progress, 2: completed)
-      "progress": json, game data that needs to be saved
+      "username": str, // username of player requested
+      "score": [int], // high score for each level
+      "level": [int], // level status, (0: new, 1: in progress, 2: completed)
+      "progress": json // game data that needs to be saved
   }
   ```
 
 * Response:
   * `200 OK`
   
-    ```
+    ```javascript
     {
-        "status": str, "success",
-        "message": str, success message
+        "status": str, // "success",
+        "message": str // success message
     }
     ```
 
   * `400 Bad Request`
   
-    ```
+    ```javascript
     {
-        "status": str, "error",
-        "type": str, error type,
-        "message": str, error message
+        "status": str, // "error",
+        "type": str, // error type,
+        "message": str // error message
     }
     ```
 
@@ -171,34 +171,34 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 * Method: `POST`
 * Request:
 
-  ```
+  ```javascript
   [{ 
-      "level": int, level number,
-      "count": int, number of players to return
+      "level": int, // level number
+      "count": int // number of players to return
   }]
   ```
 
 * Response:
   * `200 OK`
 
-    ```
+    ```javascript
     {
-        "status": str, "success",
+        "status": str, // "success"
         "data": [{
-            "level": int, level number,
-            "players": [str], username of players from highscore to low,
-            "scores": [int], coresponding score of players from highscore to low
+            "level": int, // level number
+            "players": [str], // username of players from highscore to low
+            "scores": [int] // coresponding score of players from highscore to low
         }]
     }
     ```
 
   * `400 Bad Request`
   
-    ```
+    ```javascript
     {
-        "status": str, "error",
-        "type": str, error type,
-        "message": str, error message
+        "status": str, // "error"
+        "type": str, // error type
+        "message": str // error message
     }
     ```
 
@@ -206,19 +206,19 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 
 1. Clone this repository:
 
-    ```sh
+    ```bash
     git clone https://github.com/InformationProcessingProjectGroup4/CubeServer
     ```
 
 2. Install latest version of Python; or check if you have `3.11.2` by `python --version`. If not, run the following:
 
-    ```sh
+    ```bash
     brew install python@3.11
     ```
 
 3. Create the virtual environment and activate it:
 
-    ```sh
+    ```bash
     pip install virtualenv
     virtualenv --python=3.11.2 .venv
     source .venv/bin/activate
@@ -226,20 +226,20 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 
 4. Go into the repo and install all dependancies:
 
-    ```sh
+    ```bash
     # You should now be in .../CubeServer
     pip install -r requirements.txt
     ```
 
 5. Start the app:
 
-    ```sh
+    ```bash
     flask --app cubeserver run
     ```
 
 6. To finish and exit the virtual environment:
 
-    ```sh
+    ```bash
     deactivate
     ```
 
@@ -247,22 +247,36 @@ Repository for Cube game data server. See documentation [here](https://hackmd.io
 
 ```txt
 CubeServer/
+├─ .github/workflows
+│  └─ github-actions-ec2.yml
 ├─ cubeserver/
 │  ├─ __init__.py
 │  ├─ views.py
-│  └─ db.py
-├─ test/
+│  ├─ db.py
+│  └─ util.py
+├─ tests/
+│  └─ measure_rtt.py
 ├─ setup.py
-├─ config.py
-├─ requirements.txt
-├─ .gitignore
-└─ README.md
+├─ setup_db.py
+├─ setup_db_clear.py
+├─ deploy.sh
+├─ cleanup.sh
+└─ ...
 ```
 
-1. `cubeserver/__init__.py`: main script for `cubeserver` package, initializes Flask app.
-2. `cubeserver/views.py`: routing script, handles different API endpoints.
-3. `cubeserver/db.py`: program script, handles communication with database.
-4. `setup.py`: setup script, lets `pip` knows what to install.
+1. Server Source Code
+    1. `cubeserver/__init__.py`: main script for `cubeserver` package, initializes Flask app.
+    2. `cubeserver/views.py`: routing script, handles different API endpoints.
+    3. `cubeserver/db.py`: program script, handles communication with database.
+    4. `cubeserver/util.py`: utility script, includes handy functions used in program & routing scripts.
+2. Deployment Scripts
+    1. `deploy.sh`: deployment script, kills current `tmux` session and start new session.
+    2. `cleanup.sh`: utility script, removes python cache files.
+    3. `.github/workflows/github-actions-ec2.yml`: utility script, describes steps to deployment for Github Actions.
+3. Setup Scripts
+    1. `setup.py`: setup script, lets `pip` knows what to install for deployment.
+    2. `setup_db.py`: setup script, initializes DynamoDB table.
+    3. `setup_db_clear.py`: setup script, removes the current DynamoDB table and create a empty new one.
 
 ## Branches
 
