@@ -9,7 +9,7 @@ from cubeserver.util import validate_score, validate_level
 # main api route; return method and timestamp
 @app.route("/", methods=["GET", "POST", "PUT"])
 def handle_root():
-    return f"<h1>Welcome to <code>CubeServer-Test-3</code></h1><p>by T. Chung, A. Kohli, R. Shek, B. Sukumaran, G. Vasandani, S. Wang</p>>"
+    return f"<h1>Welcome to <code>CubeServer-Test-3</code></h1><p>by T. Chung, A. Kohli, R. Shek, B. Sukumaran, G. Vasandani, S. Wang</p>"
 
 @app.route("/api", methods=["GET", "POST", "PUT"])
 def handle_api():
