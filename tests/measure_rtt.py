@@ -19,7 +19,7 @@ TEST_DATA = [
     { "username": "rtt1", "password": "guest" },
     { "username": "rtt1", "score": [2000, 0, 0, 0, 0], "level": [2, 0, 0, 0, 0], "progress": {} },
     { "username": "rtt1" },
-    [{ "level": 1, "count": 5}]
+    { "count": 5 }
 ]
 COUNT = 10
 
@@ -40,4 +40,4 @@ for i in range(len(TEST_API)):
     print(f"test_data: {TEST_DATA[i]}")
     print(f"request_count: {COUNT} times")
     print(f"rtt: {rtt} ms")
-    print(f"==================")
+    print(f"===================")
