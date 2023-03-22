@@ -21,8 +21,8 @@ def add_user(table, username, password):
         "username": username,
         "password": hash,
         "updated": str(datetime.now()),
-        "score": [0, 0, 0, 0, 0],
-        "level": [0, 0, 0, 0, 0],
+        "score": [0, 0, 0],
+        "level": [0, 0, 0],
         "progress": []
     }
     
